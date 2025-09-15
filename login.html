@@ -5,40 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halaman Login</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Reset dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       background: url("https://images.unsplash.com/photo-1581091215367-59ab6a128b9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80") no-repeat center center/cover;
-      position: relative; padding: 20px;
+      position: relative;
+      padding: 20px;
     }
-    body::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 0; }
-    .marquee { position: relative; width: 100%; overflow: hidden; white-space: nowrap; z-index: 1; margin-bottom: 20px; }
-    .marquee span { display: inline-block; padding-left: 100%; animation: scrollText 15s linear infinite; font-size: 18px; font-weight: bold; color: #fff; }
-    @keyframes scrollText { 0%{ transform: translateX(0%);} 100%{ transform: translateX(-100%);} }
+
+    /* Overlay gelap */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+
+    /* Teks berjalan */
+    .marquee {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 1;
+      margin-bottom: 20px;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollText 15s linear infinite;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    @keyframes scrollText {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
     .login-box {
-      position: relative; width: 350px; background: rgba(255,255,255,0.9); padding: 30px; border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.4); animation: fadeIn 1s ease; z-index: 1;
+      position: relative;
+      width: 350px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      animation: fadeIn 1s ease;
+      z-index: 1;
     }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
-    .login-box h2 { text-align: center; margin-bottom: 20px; color: #333; }
-    .input-group { position: relative; margin-bottom: 15px; }
-    .input-group input { width: 100%; padding: 12px 40px 12px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
-    .input-group span { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #555; }
-    .login-box button { width: 100%; padding: 12px; background: #4facfe; border: none; border-radius: 8px; color: white; font-size: 16px; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
-    .login-box button:hover { background: #00c6ff; }
-    .login-box p { text-align: center; margin-top: 15px; font-size: 14px; color: #555; }
-    .login-box a { color: #4facfe; text-decoration: none; font-weight: bold; }
-    .login-box a:hover { text-decoration: underline; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .input-group span {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #555;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: #4facfe;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .login-box button:hover {
+      background: #00c6ff;
+    }
+
+    .login-box p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .login-box a {
+      color: #4facfe;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsif HP */
+    @media (max-width: 480px) {
+      .login-box {
+        width: 100%;
+        max-width: 320px;
+        padding: 20px;
+      }
+
+      .login-box h2 {
+        font-size: 20px;
+      }
+
+      .login-box button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .marquee span {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="marquee"><span>🔥 Selamat datang di sistem kami — Login untuk melanjutkan — Promo spesial bulan ini! 🔥</span></div>
+  <!-- Teks berjalan -->
+  <div class="marquee">
+    <span>🔥 Selamat datang di sistem kami — Login untuk melanjutkan — Promo spesial bulan ini! 🔥</span>
+  </div>
+
+  <!-- Kotak Login -->
   <div class="login-box">
     <h2>Login</h2>
-    <form action="success.html" method="post">
-      <div class="input-group"><input type="text" placeholder="Username" required><span>👤</span></div>
-      <div class="input-group"><input type="password" placeholder="Password" required><span>🔒</span></div>
+    <form action="#" method="post">
+      <div class="input-group">
+        <input type="text" placeholder="Username" required>
+        <span>👤</span>
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Password" required>
+        <span>🔒</span>
+      </div>
       <button type="submit">Masuk</button>
     </form>
     <p><a href="harga.html">Liat Harga</a></p>
